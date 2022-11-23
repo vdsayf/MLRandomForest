@@ -5,8 +5,8 @@ from sklearn.metrics import mean_absolute_error
 from sklearn.impute import SimpleImputer
 
 # Read the data
-X_full = pd.read_csv('../input/train.csv', index_col='Id')
-X_test_full = pd.read_csv('../input/test.csv', index_col='Id')
+X_full = pd.read_csv('train.csv', index_col='Id')
+X_test_full = pd.read_csv('test.csv', index_col='Id')
 
 # Remove rows with missing target, separate target from predictors
 X_full.dropna(axis=0, subset=['SalePrice'], inplace=True)
@@ -77,6 +77,14 @@ final_X_train = pd.DataFrame(final_imputer.fit_transform(X_train))
 final_X_valid = pd.DataFrame(final_imputer.transform(X_valid))
 final_X_train.columns = X_train.columns
 final_X_valid.columns = X_valid.columns
+
+#run and fit a model
+model = RandomForestRegressor(n_estimators=100, random_state=0)
+model.fit(final_X_train, y_train)
+preds_valid = model.predict(final_X_valid)
+print("Shape of preds_valid :", preds_valid.shape)
+print("MAE (Your approach): median")
+print(mean_absolute_error(y_valid, preds_valid))
 
 #preprocessing test data
 
