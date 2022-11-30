@@ -91,4 +91,4 @@ num_X_valid = X_valid.drop(object_cols, axis=1)
 OH_X_train = pd.concat([num_X_train, OH_cols_train], axis=1)
 OH_X_valid = pd.concat([num_X_valid, OH_cols_valid], axis=1)
 
-
+print(X_train.shape)
