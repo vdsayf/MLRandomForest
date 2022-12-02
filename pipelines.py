@@ -11,6 +11,7 @@ from sklearn.metrics import mean_absolute_error
 X_full = pd.read_csv('pipelines/train.csv', index_col='Id')
 X_test_full = pd.read_csv('pipelines/test.csv', index_col='Id')
 
+
 #Removing rows with a missing target, and separate targets from predictors
 X_full.dropna(axis=0, subset=['SalePrice'], inplace=True)
 y = X_full.SalePrice
